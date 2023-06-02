@@ -30,5 +30,41 @@ void main() {
         expect(' \n\ra'.isWhiteSpace(), isFalse);
       });
     });
+
+    group('equalsToString', () {
+      test('positive ("" = "")', () {
+        expect(''.equalsToString(''), isTrue);
+      });
+
+      test('positive ("abc" = "abc")', () {
+        expect('abc'.equalsToString('abc'), isTrue);
+      });
+
+      test('negative ("abc" = "bca")', () {
+        expect('abc'.equalsToString('bca'), isFalse);
+      });
+    });
+
+    group('equalsToStringIgnoreCase', () {
+      test('positive ("" = "")', () {
+        expect(''.equalsToStringIgnoreCase(''), isTrue);
+      });
+
+      test('positive ("abc" = "ABC")', () {
+        expect('abc'.equalsToStringIgnoreCase('ABC'), isTrue);
+      });
+
+      test('positive ("abc def" = "ABC DEF")', () {
+        expect('abc def'.equalsToStringIgnoreCase('ABC DEF'), isTrue);
+      });
+
+      test('positive ("abc def" = "abc def")', () {
+        expect('abc def'.equalsToStringIgnoreCase('abc def'), isTrue);
+      });
+
+      test('negative ("abc" = "BCA")', () {
+        expect('abc'.equalsToStringIgnoreCase('BCA'), isFalse);
+      });
+    });
   });
 }

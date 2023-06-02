@@ -36,7 +36,10 @@ Small extension methods for commonly used types.
 
 * ```bool isStringEmpty()``` - returns true if string is empty
 * ```bool isWhiteSpace()``` - returns true if string is whitespace (consists of any: ' ', '\n', '\r')
+* ```bool equalsToString(String other)``` - returns true if two strings equals
+* ```bool equalsToStringIgnoreCase(String other)``` - returns true if two strings equals with ignoring case
 * ```bool isStringNullOrEmpty()``` - returns true if nullable string is null or empty
 * ```bool isStringNullOrWhiteSpace()``` - returns true if nullable string is null or whitespace (consists of any: ' ', '\n', '\r')
 * ```bool isStringNullOrEmptyOrWhiteSpace()``` - returns true if nullable string is null or empty or whitespace (consists of any: ' ', '\n', '\r')
-* 
+* ```bool equalsToNullableString(String other)``` - returns true if two nullable strings equals
+* ```bool equalsToNullableStringIgnoreCase(String other)``` - returns true if two nullable strings equals with ignoring case
