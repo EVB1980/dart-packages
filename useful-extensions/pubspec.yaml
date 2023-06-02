@@ -1,0 +1,11 @@
+name: useful_extensions
+description: Small useful extensions for objects, lists of different types and strings
+version: 1.0.0
+repository: https://github.com/EVB1980/dart-packages.git/useful-extensions
+
+environment:
+  sdk: ^3.0.2
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.21.0
