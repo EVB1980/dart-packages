@@ -3,6 +3,8 @@ import 'dart:typed_data';
 
 import 'package:binary_serializable/src/number_types.dart';
 
+
+
 extension Uint8ListExtension on Uint8List {
   /// Reads bytes array from [offset] with specified [length]
   Uint8List readPure(int offset, int length) {
