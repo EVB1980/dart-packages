@@ -8,12 +8,12 @@ import 'binary_writer.dart';
 class FileBinaryWriter implements BinaryWriter {
   final Uri _uri;
   final int _bufferLength;
-  late BytesBuilder _buider;
+  final BytesBuilder _buider;
 
   FileBinaryWriter(Uri uri, {int bufferLength = 8192})
       : _uri = uri,
         _bufferLength = bufferLength,
-        _buider = BytesBuilder(copy: false) {}
+        _buider = BytesBuilder(copy: false);
 
   Future<FileBinaryWriter> writeToFile(
       void Function(BytesBuilder) write) async {

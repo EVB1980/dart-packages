@@ -13,14 +13,14 @@ abstract class ISerializable {
 }
 
 extension ISerializableExtensions on ISerializable{
-  Uint8List serializeToBytes() {
+  Future<Uint8List> serializeToBytes() async {
     var bw = BytesBinaryWriter();
-    serialize(bw);
+    await serialize(bw);
     return bw.takeBytes();
   }
 
-  void deserializeFromBytes(Uint8List bytes){
+  Future deserializeFromBytes(Uint8List bytes) async{
     var br = BytesBinaryReader(bytes);
-    deserialize(br);
+    await deserialize(br);
   }
 }

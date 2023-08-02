@@ -13,11 +13,19 @@ class MySerializable extends ISerializable {
 
   @override
   Future serialize(BinaryWriter bw) async {
-    return bw
-      ..writeInt(version())
-      ..writeNInt(intField)
-      ..writeNDouble(doubleField)
-      ..writeNString(stringField);
+    var ver = version();
+
+    await bw.writeInt(ver);
+
+    switch (ver) {
+      case 1:
+        await bw.writeNInt(intField);
+        await bw.writeNDouble(doubleField);
+        await bw.writeNString(stringField);
+        break;
+      default:
+        throw Exception('Version ${ver} is not supported');
+    }
   }
 
   @override
@@ -43,9 +51,7 @@ class MySerializable extends ISerializable {
   MySerializable({this.intField, this.doubleField, this.stringField});
 
   bool equals(MySerializable other) {
-    return intField == other.intField &&
-        doubleField == other.doubleField &&
-        stringField.equalsToNullableString(other.stringField);
+    return intField == other.intField && doubleField == other.doubleField && stringField.equalsToNullableString(other.stringField);
   }
 }
 
@@ -62,10 +68,10 @@ void main() async {
 Future bytesSerializationExample(MySerializable myObj) async {
   print("==bytesSerializationExample:");
 
-  var bytes = myObj.serializeToBytes();
+  var bytes = await myObj.serializeToBytes();
 
   var myObjDes = MySerializable();
-  myObjDes.deserializeFromBytes(bytes);
+  await myObjDes.deserializeFromBytes(bytes);
 
   assert(myObj.equals(myObjDes));
 
@@ -77,7 +83,7 @@ Future fileSerializationExample(MySerializable myObj) async {
   var fbr = FileBinaryReader(uri);
   var file = File.fromUri(uri);
   var wf = await file.open(mode: FileMode.writeOnly);
-  wf.writeFrom(myObj.serializeToBytes());
+  wf.writeFrom(await myObj.serializeToBytes());
   await wf.close();
   var rf = await file.open();
 }
