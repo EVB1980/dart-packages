@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 extension StringExtensions on String {
   /// Returns true if string is empty
   bool isStringEmpty() {
@@ -48,5 +50,22 @@ extension StringExtensions on String {
       i += a.length + 1;
     }
     return true;
+  }
+
+  /// Tabs single-line or multiline string
+  String tab(int tab) {
+    var tabString = ''.padLeft(tab * 4);
+    var lineSplitter = LineSplitter();
+    var lines = lineSplitter.convert(this);
+    var buffer = StringBuffer();
+    var lastLineIdx = lines.length - 1;
+    for (var i = 0; i < lines.length; i++) {
+      buffer.write(tabString);
+      if (i < lastLineIdx)
+        buffer.writeln(lines[i]);
+      else
+        buffer.write(lines[i]);
+    }
+    return buffer.toString();
   }
 }

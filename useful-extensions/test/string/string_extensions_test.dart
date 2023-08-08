@@ -66,5 +66,25 @@ void main() {
         expect('abc'.equalsToStringIgnoreCase('BCA'), isFalse);
       });
     });
+
+    group('tab', () {
+      test('tab single line', () {
+        var source = "A";
+        var expected = "        A";
+        var tabbed = source.tab(2);
+        expect(tabbed.equalsToString(expected), isTrue);
+      });
+
+      test('tab multiline line', () {
+        var source = '''A
+B
+C''';
+        var expected = '''    A
+    B
+    C''';
+        var tabbed = source.tab(1);
+        expect(tabbed.equalsToString(expected), isTrue);
+      });
+    });
   });
 }
