@@ -8,26 +8,26 @@ import 'binary_writer.dart';
 class FileBinaryWriter implements BinaryWriter {
   final Uri _uri;
   final int _bufferLength;
-  final BytesBuilder _buider;
+  final BytesBuilder _builder;
 
   FileBinaryWriter(Uri uri, {int bufferLength = 8192})
       : _uri = uri,
         _bufferLength = bufferLength,
-        _buider = BytesBuilder(copy: false);
+        _builder = BytesBuilder(copy: false);
 
   Future<FileBinaryWriter> writeToFile(
       void Function(BytesBuilder) write) async {
     var file = File.fromUri(_uri);
     var raf = await file.open(mode: FileMode.write);
-    write(_buider);
-    if (_buider.length < _bufferLength) return this;
+    write(_builder);
+    if (_builder.length < _bufferLength) return this;
 
-    var data = _buider.takeBytes();
+    var data = _builder.takeBytes();
     var buffersCount = data.length ~/ _bufferLength;
     for (var i = 0; i < buffersCount; i++) {
       raf.writeFrom(data.sublist(i * _bufferLength, (i + 1) * _bufferLength));
     }
-    _buider.add(data.sublist(buffersCount * _bufferLength));
+    _builder.add(data.sublist(buffersCount * _bufferLength));
     return this;
   }
 

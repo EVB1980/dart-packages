@@ -1,0 +1,18 @@
+name: e_book
+description: A starting point for Dart libraries or applications.
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: ^3.0.7
+
+# Add regular dependencies here.
+dependencies:
+  useful_extensions:
+    path: '../useful-extensions'
+  binary_serializable:
+    path: '../binary-serializable'
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.21.0

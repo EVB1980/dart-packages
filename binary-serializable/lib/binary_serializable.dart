@@ -1,8 +1,7 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
 library;
 
 export 'src/binary-serializable/i_serializable.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/serialization/binary-reader/binary_reader.dart';
+export 'src/serialization/binary-reader/binary_reader_extensions.dart';
+export 'src/serialization/binary-writer/binary_writer.dart';
+export 'src/serialization/binary-writer/binary_writer_extensions.dart';

@@ -1,5 +1,5 @@
 name: binary_serializable
-description: Helper library to implement versioned binary serializeable objects
+description: Helper library to implement versioned binary serializable objects
 version: 1.0.0
 repository: https://github.com/EVB1980/dart-packages/tree/main/binary_serializable
 

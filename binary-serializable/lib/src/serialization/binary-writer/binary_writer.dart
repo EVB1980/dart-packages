@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 abstract class BinaryWriter {
-  /// Writes aray of bytes of specified length
+  /// Writes array of bytes of specified length
   Future<BinaryWriter> writePure(Uint8List list);
 
   /// Writes boolean

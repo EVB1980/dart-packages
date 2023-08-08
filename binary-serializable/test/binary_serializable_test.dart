@@ -103,7 +103,7 @@ string''';
       return br.readNString();
     }
 
-    test('nullstr', ()async {
+    test('null str', ()async {
       expect(await writeRead(nullStr) == nullStr, isTrue);
     });
 

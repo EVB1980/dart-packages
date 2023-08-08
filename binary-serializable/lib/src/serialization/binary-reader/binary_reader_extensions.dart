@@ -30,31 +30,31 @@ extension BinaryReaderExtensions on BinaryReader {
   }
 
   Stream<T> readItemsStream<T>(
-      int count, Future<T> Function(BinaryReader) deseriaize) async* {
+      int count, Future<T> Function(BinaryReader) deserialize) async* {
     for (var i = 0; i < count; i++) {
-      yield await deseriaize(this);
+      yield await deserialize(this);
     }
   }
 
   /// Reads list of objects
   Future<List<T>> readList<T>(
-      Future<T> Function(BinaryReader) deseriaize) async {
+      Future<T> Function(BinaryReader) deserialize) async {
     var length = await readInt();
-    return await readItemsStream(length, deseriaize).toList();
+    return await readItemsStream(length, deserialize).toList();
   }
 
   /// Reads nullable list of object
-  Future<List<T>?> readNList<T>(Future<T> Function(BinaryReader) deseriaize) {
-    return readNullable((br) => br.readList(deseriaize));
+  Future<List<T>?> readNList<T>(Future<T> Function(BinaryReader) deserialize) {
+    return readNullable((br) => br.readList(deserialize));
   }
 
   /// Reads list of nullable objects
-  Future<List<T?>> readListN<T>(Future<T> Function(BinaryReader) deseriaize) {
-    return readList((br) => readNullable(deseriaize));
+  Future<List<T?>> readListN<T>(Future<T> Function(BinaryReader) deserialize) {
+    return readList((br) => readNullable(deserialize));
   }
 
   /// Reads nullable list of nullable objects
-  Future<List<T?>?> readNListN<T>(Future<T> Function(BinaryReader) deseriaize) {
-    return readNullable((br) => br.readListN(deseriaize));
+  Future<List<T?>?> readNListN<T>(Future<T> Function(BinaryReader) deserialize) {
+    return readNullable((br) => br.readListN(deserialize));
   }
 }
